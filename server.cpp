@@ -82,15 +82,12 @@ class UDPConnectServer
             bytes_read = 
               socket.Receive( sender, buffer, sizeof(buffer) ); // receive here
             
-            if (bytes_read == 0)
+            if (bytes_read != -1)
               break;
-            else if (bytes_read > 0)
-              printf("bytes read!\n");
           }
           
           // print message
           std::cout << "Message received: ";
-          std::cout << bytes_read;
           std::cout.write(buffer, bytes_read);
           std::cout << "\n";
           //

@@ -1,9 +1,9 @@
 to compile:
 
-$ g++ -std=c++11 -pthread <file>.cpp -o <file> -lboost_system
+$ g++ -std=c++11 -pthread <file>.cpp -o <file>
 
 to run:
 
-$ server 8888
-$ client 127.0.0.1 8888
+$ ./server
+$ ./client
 

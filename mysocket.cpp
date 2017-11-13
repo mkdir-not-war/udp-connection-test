@@ -58,7 +58,7 @@ void Socket::shutdownSockets() {
 	#endif
 }
 
-bool Socket::Open(unsigned short port) {
+bool Socket::Open(uint16_t port) {
 	_handle = socket( AF_INET,
 					SOCK_DGRAM,
 					IPPROTO_UDP );
@@ -146,7 +146,11 @@ bool Socket::Send(const Address& destination,
         return false;
     }
     else {
-    	//printf("%s, %d, %d\n", (const char*)data, size, sent_bytes);
+    	/*
+    	printf("%s, %d, %d\n", (const char*)data, size, sent_bytes);
+    	printf("%d, 0x%08x, %d\n", _handle, 
+    		destination.getAddress(), destination.getPort());
+    	*/
     	return true;
     }
 }
@@ -187,24 +191,31 @@ Address::Address() {
 				( b << 16 ) +
 				( c << 8 ) +
 				d;
-	port = 0;
+	this->port = 0;
 }
 
 Address::Address(uint8_t a,
 	uint8_t b,
 	uint8_t c,
 	uint8_t d,
-	unsigned short port) {
+	uint16_t port) {
 
 	address = ( a << 24 ) +
 				( b << 16 ) +
 				( c << 8 ) +
 				d;
-	port = port;
+	this->port = port;
 }
 
-Address::Address(unsigned int address,
-	unsigned short port) {
-	address = address;
-	port = port;
+Address::Address(unsigned int address, uint16_t port) {
+	this->address = address;
+	this->port = port;
+}
+
+unsigned short Address::getPort() const {
+	return port;
+}
+
+unsigned int Address::getAddress() const {
+	return address;
 }

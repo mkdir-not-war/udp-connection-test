@@ -8,18 +8,18 @@ class Address {
 public:
 	Address();
 
-	Address(uint8_t, uint8_t, uint8_t, uint8_t, unsigned short);
+	Address(uint8_t, uint8_t, uint8_t, uint8_t, uint16_t);
 
-	Address(unsigned int, unsigned short);
+	Address(unsigned int, uint16_t);
 
-	unsigned int getAddress() const {return address;}
+	unsigned int getAddress() const;
 
 	uint8_t getA() const {return (address >> 24) & 0xFF;}
 	uint8_t getB() const {return (address >> 16) & 0xFF;}
 	uint8_t getC() const {return (address >> 8) & 0xFF;}
 	uint8_t getD() const {return address & 0xFF;}
 
-	unsigned short getPort() const {return port;}
+	unsigned short getPort() const;
 
 	bool operator==(const Address& other) const {
 		return address == other.address &&
@@ -28,7 +28,7 @@ public:
 
 private:
 	uint32_t address;
-	unsigned short port;
+	uint16_t port;
 };
 
 class Socket {
@@ -39,7 +39,7 @@ public:
 	int initializeSockets();
 	void shutdownSockets();
 
-	bool Open(unsigned short);
+	bool Open(uint16_t);
 
 	void Close();
 
