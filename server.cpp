@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+
 #include "mysocket.h"
 
 enum { max_length = 1024, max_clients = 64 };
@@ -102,8 +103,6 @@ class UDPConnectServer
       return 0;
     }
 };
-
-
 
 int main(int argc, char* argv[])
 {

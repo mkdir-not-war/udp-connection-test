@@ -5,12 +5,32 @@
 
 #include <stdio.h>
 
-enum { max_length = 1024 };
+enum { max_length = 1024, port = 8888 };
+
+void parseIP(char* ipnumbers[], int* serverip) {
+  for (int i=0; i<4; i++) {
+    serverip[i] = std::stoi(ipnumbers[i+1]);
+  }
+}
 
 int main(int argc, char* argv[]) {
   try {
-    // their port
-    const int port = 8888;
+
+    // parse the server IP address
+    int serverip[4];
+    if (argc != 5) {
+      printf("./client <server ip> <ip> <ip> <ip> \n");
+      return 1;
+    }
+    else {
+      parseIP(argv, serverip);
+    }
+
+    Address server = Address(serverip[0], 
+        serverip[1], 
+        serverip[2], 
+        serverip[3],
+        port);
 
     // create socket
     Socket socket;
@@ -33,7 +53,8 @@ int main(int argc, char* argv[]) {
       size_t request_length = std::strlen(request);
 
       // send the message
-      socket.Send( Address(127, 0, 0, 1, port), request, request_length );
+      //Address local = Address(127, 0, 0, 1, port);
+      socket.Send( server, request, request_length );
     }
 
     socket.shutdownSockets();
