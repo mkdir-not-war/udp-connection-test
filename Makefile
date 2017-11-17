@@ -3,8 +3,8 @@ make:
 	g++ -std=c++11 -pthread mysocket.cpp client.cpp -o client
 
 makewin:
-	x86_64-w64-mingw32-g++-posix -std=c++11 -pthread mysocket.cpp server.cpp -o server.exe -lws2_32
-	x86_64-w64-mingw32-g++-posix -std=c++11 -pthread mysocket.cpp client.cpp -o client.exe -lws2_32
+	x86_64-w64-mingw32-g++-posix -std=c++11 -pthread mysocket.cpp server.cpp -o server.exe -lws2_32 -static-libgcc -static-libstdc++
+	x86_64-w64-mingw32-g++-posix -std=c++11 -pthread mysocket.cpp client.cpp -o client.exe -lws2_32 -static-libgcc -static-libstdc++
 
 makeserver:
 	g++ -std=c++11 -pthread mysocket.cpp server.cpp -o server
