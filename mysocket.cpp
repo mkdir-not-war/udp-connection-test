@@ -25,6 +25,7 @@ https://gafferongames.com/post/sending_and_receiving_packets/
 	#include <unistd.h>
 	#include <netinet/in.h>
 	#include <fcntl.h>
+	#include <arpa/inet.h>
 #endif
 
 #if PLATFORM == PLATFORM_WINDOWS
